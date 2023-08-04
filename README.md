@@ -27,3 +27,18 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### You’ll then master all of the basics including:
+
+. Reactive data with Refs & Reactive Objects
+. Methods, Computed Properties & Watchers
+. Lifecycle Hooks
+. Directives
+. Vue Router
+. Child Components - including the new ways of handling props, emits & modelValue
+. Dynamic Components
+. Composables - how to create them from scratch & how to import them from the VueUse library
+
+And you’ll learn State Management using Pinia, the incredible successor to Vuex
+
+After learning the basics, you’re gonna create a real world app called Noteballs from scratch - which has full CRUD capabilities, uses Pinia for State Management and demonstrates real-world use of all the basics you learned earlier.
