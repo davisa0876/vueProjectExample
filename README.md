@@ -28,16 +28,20 @@ npm run dev
 npm run build
 ```
 
+## Description
+If you’re already familiar with Vue 2 & The Options API, this small project will teach you everything you need to know to switch over to (and get started with) Vue 3 & the amazing new Composition API.
+
+
 ### You’ll then master all of the basics including:
 
-. Reactive data with Refs & Reactive Objects
-. Methods, Computed Properties & Watchers
-. Lifecycle Hooks
-. Directives
-. Vue Router
-. Child Components - including the new ways of handling props, emits & modelValue
-. Dynamic Components
-. Composables - how to create them from scratch & how to import them from the VueUse library
+- Reactive data with Refs & Reactive Objects
+- Methods, Computed Properties & Watchers
+- Lifecycle Hooks
+- Directives
+- Vue Router
+- Child Components - including the new ways of handling props, emits & modelValue
+- Dynamic Components
+- Composables - how to create them from scratch & how to import them from the VueUse library
 
 And you’ll learn State Management using Pinia, the incredible successor to Vuex
 
