@@ -1,10 +1,17 @@
+
+
 <template>
+
   <div class="home">
+    <h4>
+     Home
+    </h4>
     <button @click="decreaseCounter" class="btn btn-primary shadow">-</button>
     <span class="counter"> {{counter}} </span>
     <button @click="increaseCounter" class="btn btn-primary shadow">+</button>
   </div>
 </template>
+
 <script>
 export default{
   data()  {

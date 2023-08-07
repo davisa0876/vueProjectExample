@@ -1,39 +1,17 @@
 
 <template>
   <header>
-    <nav>
-      <div v-show="isMobile" @click="showMenu = !showMenu">
-        <!-- Simple hamburger icon -->
-        <svg viewBox="0 0 100 80" width="40" height="40">
-          <rect width="100" height="20"></rect>
-          <rect y="30" width="100" height="20"></rect>
-          <rect y="60" width="100" height="20"></rect>
-        </svg>
-      </div>
-
-      <div v-show="!isMobile || showMenu">
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </div>
-    </nav>
+    <ul>
+      <li>  <RouterLink to="/">Home</RouterLink></li>     
+      <li>  <RouterLink to="/about">About</RouterLink></li>
+      <li>  <RouterLink to="/example">Composition API</RouterLink></li>
+      <li>  <RouterLink to="/scriptsetup">Script Setup</RouterLink></li>
+      <li>  <RouterLink to="/TwoWayDataBinding">Two-Way Data Binding</RouterLink></li>
+      <li>  <RouterLink to="/ReactiveObjects">Reactive Objects</RouterLink></li>
+    </ul>
   </header>
-
   <RouterView />
 </template>
-
-<script>
-import { ref } from 'vue';
-import useMediaQuery from './useMediaQuery';
-
-export default {
-  setup() {
-    const isMobile = useMediaQuery('(max-width: 768px)');
-    const showMenu = ref(false);
-
-    return { isMobile, showMenu };
-  }
-}
-</script>
 
 <style scoped>
 header {
@@ -66,7 +44,6 @@ nav a {
   padding: 0 1rem;
   border-left: 1px solid var(--color-border);
   color: var(--color-text);
-  
 }
 
 nav a:first-of-type {
@@ -91,6 +68,7 @@ nav a:first-of-type {
   }
 
   nav {
+    display: flex;
     text-align: left;
     margin-left: -1rem;
     font-size: 1rem;
