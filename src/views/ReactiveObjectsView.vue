@@ -22,7 +22,6 @@
     {
       count:  0,
       title: 'Reactive Objects'
-
     }
   )      
 
