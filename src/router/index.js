@@ -33,7 +33,26 @@ const router = createRouter({
       path: '/ReactiveObjects',
       name: 'ReactiveObjects',
       component: () => import('../views/ReactiveObjectsView.vue')
+    },
+    {
+      path: '/NonReactiveObjects',
+      name: 'NonReactiveObjects',
+      component: () => import('../views/NoReactiveObjectsView.vue')
+    },
+    {
+      path: '/ParametersToMethod',
+      name: 'ParametersToMethod',
+      component: () => import('../views/ParametersToMethodView.vue')
+    },
+    {
+      path: '/ComputedProperties',
+      name: 'ComputedProperties',
+      component: () => import('../views/ComputedPropertiesView.vue')
     }
+
+
+    
+    
   ]
 })
 

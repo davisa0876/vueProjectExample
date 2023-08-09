@@ -35,7 +35,24 @@
 			<router-link to="/ReactiveObjects" class="button">
 				<span class="material-icons"><label class="fa fa-code"></label></span>
 				<span class="text">Reactive Objects</span>
-			</router-link>   
+			</router-link> 
+			<router-link to="/NonReactiveObjects" class="button">
+				<span class="material-icons"><label class="fa fa-code"></label></span>
+				<span class="text">Non Reactive Objects</span>
+			</router-link>     
+
+			<router-link to="/ParametersToMethod" class="button">
+				<span class="material-icons"><label class="fa fa-code"></label></span>
+				<span class="text">Passing Parameters to a Method</span>
+			</router-link>   			
+
+			<router-link to="/ComputedProperties" class="button">
+				<span class="material-icons"><label class="fa fa-code"></label></span>
+				<span class="text">Computed Properties</span>
+			</router-link>   			
+
+			
+
 		</div>
     
 
@@ -118,6 +135,7 @@ aside {
 	h3, .button .text {
 		opacity: 0;
 		transition: opacity 0.3s ease-in-out;
+
 	}
 
 	h3 {
@@ -142,10 +160,12 @@ aside {
 				font-size: 2rem;
 				color: var(--light);
 				transition: 0.2s ease-in-out;
+				font-size: 0.87rem;
 			}
 			.text {
 				color: var(--light);
 				transition: 0.2s ease-in-out;
+				font-size: 0.8rem;
 			}
 
 			&:hover {

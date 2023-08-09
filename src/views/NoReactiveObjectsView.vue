@@ -4,6 +4,11 @@
       <h4>
         {{ counterData.title }}:
       </h4>
+
+      <h2>
+        {{ appTitle }}:
+      </h2>
+
       <button @click="decreaseCounter" class="btn btn-primary shadow">-</button>
       <span class="counter"> {{counterData.count}} </span>
       <button @click="increaseCounter" class="btn btn-primary shadow">+</button>
@@ -20,10 +25,13 @@
 <script setup>
   import {reactive} from 'vue'
 
+  const appTitle = 'This is my Counter App'
+
+
   const counterData = reactive(
     {
       count:  0,
-      title: 'Reactive Objects'
+      title: 'Non Reactive Objects'
     }
   )      
 

@@ -7,12 +7,15 @@
       <button @click="decreaseCounter" class="btn btn-primary shadow">-</button>
       <span class="counter"> {{counter}} </span>
       <button @click="increaseCounter" class="btn btn-primary shadow">+</button>
+
+      <div class="edit">
+        <h4>Edit Counter Title</h4>
+        <input v-model="counterTitle" type="text">
+      </div>
+
     </div>
 
-<div class="edit">
-  <h4>Edit Counter Title</h4>
-  <input v-model="counterTitle" type="text">
-</div>
+
 
 </template>
 

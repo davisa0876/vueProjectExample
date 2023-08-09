@@ -3,23 +3,10 @@
 		<!-- Sidebar -->
 		<Sidebar />
 
-      
-
-      <div class="row">
-        <div class="col-md-12 col-xl-12 col-xs-12 col-sm-12">
-          <div class="card">
-            <div class="card-body">
-              <div>
-                <RouterView />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-  
-		<!-- Content -->
-		
+		<div class="card-main">
+			<!-- Content -->
+			<router-view />
+		</div>
 	</div>
 </template>
 
@@ -49,7 +36,19 @@ body {
 	background: var(--light);
 }
 
+.card-main{
+	background: #ffffff;
+	width: 95%;
+	margin-left: 10px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
 
+@media (max-width: 1024px) {
+	.card-main{
+	 margin-left: 80px;
+	}
+}
 
 button {
 	cursor: pointer;
@@ -61,7 +60,6 @@ button {
 
 .app {
 	display: flex;
-
 	main {
 		flex: 1 1 0;
 		padding: 2rem;
