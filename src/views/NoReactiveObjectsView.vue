@@ -44,26 +44,25 @@
   }
 </script>
 <style>
- .scriptsetup{
-  text-align: center;
- }
- .btn, .counter{
-  font-size: 40px;
-  margin: 10px;
- }
-.edit{
-  margin-top: 60px;
-}
+  .scriptsetup{
+    text-align: center;
+  }
+  .btn, .counter{
+    font-size: 40px;
+    margin: 10px;
+  }
+  .edit{
+    margin-top: 60px;
+  }
 
-.example-code pre {
-    background-color: #f5f5f5;
-    padding: 15px;
-    border-radius: 5px;
-    overflow: auto;
-    white-space: pre-wrap;
-    word-wrap: break-word;
-}
-
+  .example-code pre {
+      background-color: #f5f5f5;
+      padding: 15px;
+      border-radius: 5px;
+      overflow: auto;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+  }
 </style>
 
 

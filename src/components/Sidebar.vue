@@ -37,20 +37,29 @@
 				<span class="text">Reactive Objects</span>
 			</router-link> 
 			<router-link to="/NonReactiveObjects" class="button">
-				<span class="material-icons"><label class="fa fa-code"></label></span>
+				<span class="material-icons"><label class="fa fa-th"></label></span>
 				<span class="text">Non Reactive Objects</span>
 			</router-link>     
 
 			<router-link to="/ParametersToMethod" class="button">
-				<span class="material-icons"><label class="fa fa-code"></label></span>
+				<span class="material-icons"><label class="fa fa-plus-circle"></label></span>
 				<span class="text">Passing Parameters to a Method</span>
 			</router-link>   			
 
 			<router-link to="/ComputedProperties" class="button">
-				<span class="material-icons"><label class="fa fa-code"></label></span>
+				<span class="material-icons"><label class="fa fa-sellsy"></label></span>
 				<span class="text">Computed Properties</span>
-			</router-link>   			
+			</router-link>   	
 
+			<router-link to="/watch" class="button">
+				<span class="material-icons"><label class="fa fa-sellsy"></label></span>
+				<span class="text">Watch</span>
+			</router-link>   	
+
+			<router-link to="/webcrawler" class="button">
+				<span class="material-icons"><label class="fa fa-eye"></label></span>
+				<span class="text">Web Crawler</span>
+			</router-link>   
 			
 
 		</div>

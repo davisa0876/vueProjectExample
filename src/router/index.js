@@ -48,6 +48,16 @@ const router = createRouter({
       path: '/ComputedProperties',
       name: 'ComputedProperties',
       component: () => import('../views/ComputedPropertiesView.vue')
+    },
+    {
+      path: '/watch',
+      name: 'watch',
+      component: () => import('../views/watchView.vue')
+    },
+    {
+      path: '/webcrawler',
+      name: 'webcrawler',
+      component: () => import('../views/crawler/ResultCardView.vue')
     }
 
 
