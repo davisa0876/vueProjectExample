@@ -1,18 +1,55 @@
 <template>
+   
+	<Header @update:isExpanded="handleExpand" />
+	
 	<div class="app">
 		<!-- Sidebar -->
-		<Sidebar />
+		<Sidebar :isExpanded="isExpanded" />
 
-		<div class="card-main">
+		<div :class="cardMainClass">
 			<!-- Content -->
-			<router-view />
+			<RouterView/>
 		</div>
 	</div>
+	<!--router-view v-slot="{ Component }">
+		<keep-alive>
+			<component :is="Component" />
+		</keep-alive>
+	</!--router-view-->
+
+	
+
+
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount ,computed} from 'vue';
+
 import Sidebar from './components/Sidebar.vue'
+import Header  from './components/top.vue'
+
+const isExpanded = ref(window.innerWidth > 992 ? true : false);
+let cardMainClass = computed(() => isExpanded.value ? 'card-main' : 'card-main collapsed');
+
+
+// You should define the method like this, without "this."
+const handleExpand = (value) => {
+    isExpanded.value = value; // Notice .value since isExpanded is a ref
+    console.log("App.vue received isExpanded value:", isExpanded.value); 
+}
+
+onMounted(() => {
+  window.addEventListener('resize', handleResize);
+  handleResize();
+});
+
+onBeforeUnmount(() => {
+  window.removeEventListener('resize', handleResize);
+});
+
+
 </script>
+
 
 <style lang="scss">
 :root {
@@ -39,16 +76,42 @@ body {
 .card-main{
 	background: #ffffff;
 	width: 95%;
-	margin-left: 10px;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-left: 15px;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	margin-right: 10px;
 }
+
+
 
 @media (max-width: 1024px) {
 	.card-main{
-	 margin-left: 80px;
+		margin-left: 15px;
+		margin-right: -1px !important;
 	}
+
+	.row{
+		padding-right: -1px !important;
+		padding-left: 0px !important;
+		margin-right: 0px !important;
+		margin-left: -240px !important;
+	}
+
+	.card-body{
+		margin-left: 4px;
+		margin-right: 0px !important;
+	}
+
 }
+
+@media (min-width: 1025px) {  // Only screens wider than 1024px
+  .collapsed {
+    margin-left: -245px !important;
+    margin-right: -140px !important;
+    width: 98%;
+  }
+}
+
 
 button {
 	cursor: pointer;

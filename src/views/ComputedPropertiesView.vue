@@ -1,37 +1,67 @@
 
 <template>
-    <div class="scriptsetup">
-      <h4>
-        {{ counterData.title }}:
-      </h4>
-
-      <h2>
-        {{ appTitle }}:
-      </h2>
-
-      <button @click="decreaseCounter(2,'Your are now subtracting 2', $event)" class="btn btn-primary shadow">-2</button>
-      <button @click="decreaseCounter(1,'Your are now subtracting 1', $event)" class="btn btn-primary shadow">-</button>
-      <span class="counter"> {{counterData.count}} </span>
-      <button @click="increaseCounter(1 ,'Your are now Adding 1' , $event)" class="btn btn-primary shadow">+</button>
-      <button @click="increaseCounter(2 ,'Your are now Adding 2' , $event)" class="btn btn-primary shadow">+2</button>
-
-        <div class="edit">
-          <h3>Message</h3>
-          {{ counterData.message }}
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="scriptsetup">
+              <h4>
+                {{ counterData.title }}:
+              </h4>
+              <h2>
+                {{ appTitle }}:
+              </h2>
+              <button @click="decreaseCounter(2,'Your are now subtracting 2', $event)" class="btn btn-primary shadow">-2</button>
+              <button @click="decreaseCounter(1,'Your are now subtracting 1', $event)" class="btn btn-primary shadow">-</button>
+              <span class="counter"> {{counterData.count}} </span>
+              <button @click="increaseCounter(1 ,'Your are now Adding 1' , $event)" class="btn btn-primary shadow">+</button>
+              <button @click="increaseCounter(2 ,'Your are now Adding 2' , $event)" class="btn btn-primary shadow">+2</button>
+            </div>
+          </div>
         </div>
-
-        <div class="edit">
-          <h3>This counter is:  {{ OddorEven }}</h3>
-
-
-        </div>
-
- 
-        <div class="edit">
-          <h4>Edit Counter Title</h4>
-          <input v-model="counterData.title" type="text">
-        </div>
+      </div>
     </div>
+
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="scriptsetup">
+                <h3>Message</h3>
+                {{ counterData.message }}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+              <div class="scriptsetup">
+                  <h3>This counter is:  {{ OddorEven }}</h3>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="scriptsetup">
+              <h4>Edit Counter Title</h4>
+              <input v-model="counterData.title" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
 
 </template>

@@ -8,7 +8,7 @@
             <h1 class="card-title mb-1">{{appTitle}}:</h1>
             <div>
               <h6 class="card-title mb-1">{{subTitle}}:</h6>
-            </div>
+            </div> 
             <div class="input-group">
                 <input type="text" v-model="searchurls" placeholder="Enter URLs comma separated" class="form-control">
                 <span class="input-group-btn">
@@ -25,13 +25,14 @@
         <div class="card">
           <div class="card-body">
             <ul>
-                <li>{{URLsLabel}}: <ul>
+                <li>{{URLsLabel}}: 
+                    <ul>
                               <li v-for="url in ResultData.URLsArray" :key="url">{{ url }}</li>
                           </ul>
                 </li>
                 <li>{{TotalURLsLabel}}: {{ ResultData.totalURLs }}</li>
-                <li>{{PagesLoadTimeLabel}}: {{ ResultData.generalAverageLoadTime }}</li>
                 <li>{{AverageWordCountLabel}}: {{ ResultData.generalAverageWordCount }}</li>
+                <li>{{PagesLoadTimeLabel}}: {{ ResultData.generalAverageLoadTime }} Seconds</li>
                 <li>{{AverageTitleLengthLabel}}: {{ ResultData.generalTitleLength }}</li>
             </ul>
           </div>
@@ -71,13 +72,13 @@
           {{ item.url }}
       </div>
       <div class="card-body">
-          <p><strong>Load Time:</strong> {{ item.LoadTime }}</p>
-          <p><strong>Word Count:</strong> {{ item.WordCount }}</p>
+          <p><strong>Load Time:</strong>    {{ item.LoadTime/100 }} Seconds</p>
+          <p><strong>Word Count:</strong>   {{ item.WordCount }}</p>
           <p><strong>Title Length:</strong> {{ item.TitleLength }}</p>
           
           <!-- Use AccordionItem component -->
           <AccordionItem :links="item.uniqueExternalLinks" title="Unique External Links" :id="`ext-${item.url}`" @toggle="handleToggle"/>
-          <AccordionItem :links="item.uniqueImages" title="Unique Images" :id="`img-${item.url}`" @toggle="handleToggle"/>
+          <AccordionItem :links="item.uniqueImages"        title="Unique Images"         :id="`img-${item.url}`" @toggle="handleToggle"/>
           <AccordionItem :links="item.uniqueInternalLinks" title="Unique Internal Links" :id="`int-${item.url}`" @toggle="handleToggle"/>
       </div>
 </div>    
@@ -87,7 +88,7 @@
 
 <script setup>
 import { reactive, ref } from 'vue';
-import AccordionItem from './AccordionItem.vue';
+import AccordionItem from './AccordionItemView.vue';
 
 const appTitle = 'Crawler';
 const subTitle = 'Enter URLs comma separated';

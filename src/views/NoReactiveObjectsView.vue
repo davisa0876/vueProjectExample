@@ -1,24 +1,43 @@
 
 <template>
-    <div class="scriptsetup">
-      <h4>
-        {{ counterData.title }}:
-      </h4>
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="scriptsetup">
+                <h4>
+                  {{ counterData.title }}:
+                </h4>
 
-      <h2>
-        {{ appTitle }}:
-      </h2>
+                <h2>
+                  {{ appTitle }}:
+                </h2>
 
-      <button @click="decreaseCounter" class="btn btn-primary shadow">-</button>
-      <span class="counter"> {{counterData.count}} </span>
-      <button @click="increaseCounter" class="btn btn-primary shadow">+</button>
+                <button @click="decreaseCounter" class="btn btn-primary shadow">-</button>
+                <span class="counter"> {{counterData.count}} </span>
+                <button @click="increaseCounter" class="btn btn-primary shadow">+</button>
 
-        <div class="edit">
-          <h4>Edit Counter Title</h4>
-          <input v-model="counterData.title" type="text">
+            </div>
+          </div>
         </div>
+      </div>
     </div>
 
+
+    <div class="row">
+      <div class="col-lg-12 col-md-12">
+        <div class="card">
+          <div class="card-body">
+            <div class="scriptsetup">
+                <div class="edit">
+                  <h4>Edit Counter Title</h4>
+                  <input v-model="counterData.title" type="text">
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 </template>
 

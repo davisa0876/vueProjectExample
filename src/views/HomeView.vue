@@ -2,14 +2,26 @@
 
 <template>
 
-  <div class="home">
-    <h4>
-     Home
-    </h4>
-    <button @click="decreaseCounter" class="btn btn-primary shadow">-</button>
-    <span class="counter"> {{counter}} </span>
-    <button @click="increaseCounter" class="btn btn-primary shadow">+</button>
+
+
+
+<div class="row">
+  <div class="col-lg-12 col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="home">
+          <h4>
+          Home
+          </h4>
+          <button @click="decreaseCounter" class="btn btn-primary shadow">-</button>
+          <span class="counter"> {{counter}} </span>
+          <button @click="increaseCounter" class="btn btn-primary shadow">+</button>
+        </div>
+      </div>
+    </div>
   </div>
+</div>
+
 </template>
 
 <script>

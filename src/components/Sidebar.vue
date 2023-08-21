@@ -1,69 +1,55 @@
 <template>
-	<aside :class="`${is_expanded ? 'is-expanded' : ''}`">
-		<div class="logo">
-			<img :src="logoURL" alt="Vue" /> 
-		</div>
-
-		<div class="menu-toggle-wrap">
-			<button class="menu-toggle material-icons" @click="ToggleMenu">
-				<span class="material-icons"><label class="fa fa-bars"></label></span>
-			</button>
-		</div>
-
-		<h3>Menu</h3>
+	 <aside :class="{ open: isExpanded, hide: !isExpanded }">
+		<h2>Menu</h2>
 		<div class="menu">
 			<router-link to="/" class="button">
 				<span class="material-icons"><label class="fa fa-home"></label></span>
 				<span class="text">Home</span>
 			</router-link>
+
 			<router-link to="/about" class="button">
-				<span class="material-icons"><label class="fa fa-user"></label></span>
+				<span class="material-icons"><label class="fa fa-odnoklassniki"></label></span>
 				<span class="text">About</span>
 			</router-link>
-			<router-link to="/example" class="button">
-				<span class="material-icons"><label class="fa fa-code"></label></span>
-				<span class="text">Composition API</span>
-			</router-link>
-			<router-link to="/scriptsetup" class="button">
-				<span class="material-icons"><label class="fa fa-code"></label></span>
-				<span class="text">Script Setup</span>
-			</router-link>
-			<router-link to="/TwoWayDataBinding" class="button">
-				<span class="material-icons"><label class="fa fa-code"></label></span>
-				<span class="text">Two-Way Data Binding</span>
-			</router-link> 
-			<router-link to="/ReactiveObjects" class="button">
-				<span class="material-icons"><label class="fa fa-code"></label></span>
-				<span class="text">Reactive Objects</span>
-			</router-link> 
-			<router-link to="/NonReactiveObjects" class="button">
-				<span class="material-icons"><label class="fa fa-th"></label></span>
-				<span class="text">Non Reactive Objects</span>
-			</router-link>     
 
-			<router-link to="/ParametersToMethod" class="button">
-				<span class="material-icons"><label class="fa fa-plus-circle"></label></span>
-				<span class="text">Passing Parameters to a Method</span>
-			</router-link>   			
+			<!-- Dropdown for Simple Examples -->
 
-			<router-link to="/ComputedProperties" class="button">
-				<span class="material-icons"><label class="fa fa-sellsy"></label></span>
-				<span class="text">Computed Properties</span>
-			</router-link>   	
+			<div class="dropdown">
 
-			<router-link to="/watch" class="button">
-				<span class="material-icons"><label class="fa fa-sellsy"></label></span>
-				<span class="text">Watch</span>
-			</router-link>   	
+				<button @click.stop="toggleDropdown('simpleExamples')">
+					
+					<span class="material-icons"><label class="fa fa-code"></label></span>
+					<span class="text">Simple Examples</span>
+					<i :class="['fa', 'fa-chevron-down', { 'rotated': currentDropdown === 'simpleExamples' }]"></i>
+				</button>
 
-			<router-link to="/webcrawler" class="button">
-				<span class="material-icons"><label class="fa fa-eye"></label></span>
-				<span class="text">Web Crawler</span>
-			</router-link>   
-			
+				<div v-if="currentDropdown === 'simpleExamples'" class="dropdown-menu ">
+					<router-link to="/example"><label class="fa fa-angle-double-right">Composition API</label></router-link>
+					<router-link to="/scriptsetup"> <label class="fa fa-angle-double-right"> Script Setup</label></router-link>
+					<router-link to="/TwoWayDataBinding"><label class="fa fa-angle-double-right"> Two-Way Data Binding</label></router-link>
+					<router-link to="/ReactiveObjects"><label class="fa fa-angle-double-right"> Reactive Objects</label></router-link>
+					<router-link to="/NonReactiveObjects"><label class="fa fa-angle-double-right"> Non Reactive Objects</label></router-link>
+					<router-link to="/ParametersToMethod"><label class="fa fa-angle-double-right"> Passing Parameters</label></router-link>
+					<router-link to="/ComputedProperties"><label class="fa fa-angle-double-right"> Computed Properties</label></router-link>
+					<router-link to="/watch"><label class="fa fa-angle-double-right"> Watch</label></router-link>
+				</div>
+			</div>
+
+			<div class="dropdown">
+				<button @click.stop="toggleDropdown('apiCalls')">
+					<span class="material-icons"><label class="fa fa-eye"></label></span>
+					<span class="text">API Calls</span>
+					<i :class="['fa', 'fa-chevron-down', { 'rotated': currentDropdown === 'apiCalls' }]"></i>
+				</button>
+				<div v-if="currentDropdown === 'apiCalls'" class="dropdown-menu">
+					<router-link to="/webcrawler"><label class="fa fa-angle-double-right"> Web Crawler</label></router-link>
+					<router-link to="/iplocation"><label class="fa fa-angle-double-right"> IP Location</label></router-link>
+				</div>
+			</div>
+
+			<!-- Dropdown for API Calls -->
 
 		</div>
-    
 
 		<div class="flex"></div>
 		
@@ -74,167 +60,295 @@
 			</router-link>
 		</div>
 	</aside>
+
+
+	
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import logoURL from '../assets/logo.svg'
+   
+	import { onMounted, onBeforeUnmount, ref, defineEmits  } from 'vue';
 
-const is_expanded = ref(localStorage.getItem("is_expanded") === "true")
 
-const ToggleMenu = () => {
-	is_expanded.value = !is_expanded.value
-	localStorage.setItem("is_expanded", is_expanded.value)
-}
+
+
+	const currentDropdown = ref('');
+	const { isExpanded } = defineProps(['isExpanded']);
+	const emits = defineEmits(['update:isExpanded']);
+	
+	onMounted(() => {document.addEventListener('click', outsideClickListener)})
+
+	onBeforeUnmount(() => {
+		document.removeEventListener('click', outsideClickListener);
+	});
+
+	const outsideClickListener = (event) => {
+		if (!event.target.closest('.dropdown')) {
+			console.log("Outside Click Detected");
+			currentDropdown.value = '';
+		}
+
+		if (!event.target.closest('aside')) {
+			console.log("Outside Click Detected");
+			currentDropdown.value = '';
+			emits('update:isExpanded', false);  // Close the sidebar
+		}
+	};
+
+	const toggleDropdown = (dropdownName) => {
+		console.log(`Toggling dropdown: ${dropdownName}`);
+		if (currentDropdown.value === dropdownName) {
+			currentDropdown.value = '';
+		} else {
+			currentDropdown.value = dropdownName;
+		}
+	};
+
 </script>
 
 <style lang="scss" scoped>
-aside {
-	display: flex;
-	flex-direction: column;
-
-	background-color: var(--dark);
-	color: var(--light);
-
-	width: calc(2rem + 32px);
-	overflow: hidden;
-	min-height: 100vh;
-	padding: 1rem;
-
-	transition: 0.2s ease-in-out;
-
-	.flex {
-		flex: 1 1 0%;
-	}
-
-	.logo {
-		margin-bottom: 1rem;
-
-		img {
-			width: 2rem;
-		}
-	}
-
-	.menu-toggle-wrap {
+	aside {
 		display: flex;
-		justify-content: flex-end;
-		margin-bottom: 1rem;
-
-		position: relative;
-		top: 0;
+		flex-direction: column;
+		background-color: var(--dark);
+		color: var(--light);
+		width: 255px;
+		overflow: hidden;
+		min-height: 100vh;
+		padding: 1rem;
 		transition: 0.2s ease-in-out;
+		font-family: "feather";
 
-		.menu-toggle {
-			transition: 0.2s ease-in-out;
-			.material-icons {
-				font-size: 2rem;
-				color: var(--light);
-				transition: 0.2s ease-out;
+		@media (max-width: 1024px) {
+				width: 100% !important;
+		}
+
+
+		z-index: 1000;  /* Or any high value to ensure it appears on top */
+ 	    position: relative;  /* Position can also be `absolute` or `fixed` */
+
+
+		&.is-expanded {
+			width: var(--sidebar-width);
+
+			.menu-toggle-wrap {
+				top: -3rem;
+				.menu-toggle {
+					transform: rotate(-180deg);
+				}
 			}
-			
-			&:hover {
+
+			h3,
+			.button .text {
+				opacity: 1;
+			}
+
+			.button {
 				.material-icons {
-					color: var(--primary);
-					transform: translateX(0.5rem);
-				}
-			}
-		}
-	}
-
-	h3, .button .text {
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
-
-	}
-
-	h3 {
-		color: var(--grey);
-		font-size: 0.875rem;
-		margin-bottom: 0.5rem;
-		text-transform: uppercase;
-	}
-
-	.menu {
-		margin: 0 -1rem;
-
-		.button {
-			display: flex;
-			align-items: center;
-			text-decoration: none;
-
-			transition: 0.2s ease-in-out;
-			padding: 0.5rem 1rem;
-
-			.material-icons {
-				font-size: 2rem;
-				color: var(--light);
-				transition: 0.2s ease-in-out;
-				font-size: 0.87rem;
-			}
-			.text {
-				color: var(--light);
-				transition: 0.2s ease-in-out;
-				font-size: 0.8rem;
-			}
-
-			&:hover {
-				background-color: var(--dark-alt);
-
-				.material-icons, .text {
-					color: var(--primary);
+					margin-right: 1rem;
 				}
 			}
 
-			&.router-link-exact-active {
-				background-color: var(--dark-alt);
-				border-right: 5px solid var(--primary);
-
-				.material-icons, .text {
-					color: var(--primary);
-				}
+			.footer {
+				opacity: 0;
 			}
 		}
-	}
 
-	.footer {
-		opacity: 0;
-		transition: opacity 0.3s ease-in-out;
 
-		p {
-			font-size: 0.875rem;
-			color: var(--grey);
+
+		.flex {
+			flex: 1 1 0%;
 		}
-	}
 
-	&.is-expanded {
-		width: var(--sidebar-width);
+
 
 		.menu-toggle-wrap {
-			top: -3rem;
-			
+			display: flex;
+			justify-content: flex-end;
+			margin-bottom: 1rem;
+			position: relative;
+			top: 0;
+			transition: 0.2s ease-in-out;
+
 			.menu-toggle {
-				transform: rotate(-180deg);
+				transition: 0.2s ease-in-out;
+
+				.material-icons {
+					font-size: 2rem;
+					color: var(--light);
+					transition: 0.2s ease-out;
+				}
+
+				&:hover {
+					.material-icons {
+						color: var(--primary);
+						transform: translateX(0.5rem);
+					}
+				}
 			}
 		}
 
-		h3, .button .text {
-			opacity: 1;
+		h3,
+		.button .text {
+		
+			transition: opacity 0.3s ease-in-out;
+			text-align: left !important;
+			color: white !important;
 		}
 
-		.button {
-			.material-icons {
-				margin-right: 1rem;
+		h2 {
+			color: white;
+			font-size: 0.875rem;
+			margin-bottom: 0.5rem;
+			text-transform: uppercase;
+			margin-top: 65px;
+		}
+
+		.menu {
+			margin: 0 -1rem;
+
+
+
+			.button {
+				display: flex;
+				align-items: center;
+				text-decoration: none;
+				transition: 0.2s ease-in-out;
+				padding: 0.5rem 1rem;
+				color: white !important;
+				.material-icons {
+					font-size: 2rem;
+					color: var(--light);
+					transition: 0.2s ease-in-out;
+					font-size: 0.87rem;
+				}
+
+				.text {
+					color: var(--light);
+					transition: 0.2s ease-in-out;
+					font-size: 0.8rem;
+					color: white !important;
+				}
+
+				&:hover {
+					background-color: var(--dark-alt);
+
+					.material-icons,
+					.text {
+						color: white !important;
+					}
+				}
+
+				&.router-link-exact-active {
+					background-color: var(--dark-alt);
+					border-right: 5px solid var(--primary);
+
+					.material-icons,
+					.text {
+						color: var(--primary);
+					}
+				}
+			}
+
+			.button, .dropdown > button {
+				display: flex;
+				align-items: center;
+			}
+
+			.button .material-icons, .dropdown > button .material-icons {
+				margin-right: 1rem;  // or whatever value is appropriate
 			}
 		}
 
-		.footer {
-			opacity: 0;
+		.dropdown {
+			display: block;
+			position: relative;
+			width: 100%;
+
+			button {
+				width: 100%;
+				display: flex;
+				align-items: center;
+				text-decoration: none;
+				background: none;
+				border: none;
+				color: inherit;
+				padding: 0.5rem 1rem;
+				justify-content: flex-start;
+				position: relative;
+				padding-right: 40px;
+				font-size: 0.8rem;
+
+				.material-icons {
+					margin-right: 0.5rem;
+				}
+
+				&:hover {
+					background-color: #fff;
+
+					.material-icons,
+					.text {
+						color: var(--primary);
+					}
+				}
+
+				&:focus {
+					outline: none;
+				}
+
+				.fa-chevron-down {
+					position: absolute;
+					right: 15px;
+					top: 50%;
+					transform: translateY(-50%);
+					transition: transform 0.3s ease-in-out;
+
+					&.rotated {
+						transform: translateY(-50%) rotate(180deg);
+					}
+				}
+			}
+
+			.dropdown-menu {
+				position: relative;
+				flex-direction: column;
+				background-color: #1e293b;
+				display: flex;
+				width: 98%;
+				border: 1px solid rgb(102, 100, 100);
+				> a {
+					padding: 0.5rem 1rem;
+					color: #fff;
+					&:hover {
+						background-color: lighten(#ecf0f7, 10%);
+						display: flex;
+						color: #1e293b;
+					}
+
+					&.router-link-exact-active {
+						background-color: lighten(#3a5485, 5%);
+						border-left: 5px solid var(--primary);
+						display: flex;
+						color: #fff;
+						text-decoration: none;
+						.material-icons,
+						.text {
+							color: #1e293b;
+						}
+					}
+				}
+			}
 		}
 	}
-
-	@media (max-width: 1024px) {
-		position: absolute;
-		z-index: 99;
+	.hide {
+		opacity: 0;
+		transform: translateX(-100%);
+		transition: transform 0.3s ease, opacity 0.3s ease;
 	}
-}
+
+
+
+
+
+
 </style>
