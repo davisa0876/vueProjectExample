@@ -58,9 +58,17 @@ const router = createRouter({
       path: '/webcrawler',
       name: 'webcrawler',
       component: () => import('../views/crawler/ResultCardView.vue')
+    },
+    {
+      path: '/post',
+      name: 'post',
+      component: () => import('../views/posts/PostsView.vue')
+    },
+    {
+      path: '/postDetail/:id',
+      name: 'postsDetail',
+      component: () => import('../views/posts/PostDetailView.vue')
     }
-
-
     
     
   ]

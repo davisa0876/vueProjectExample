@@ -47,6 +47,19 @@
 				</div>
 			</div>
 
+
+			<div class="dropdown">
+				<button @click.stop="toggleDropdown('posts')">
+					<span class="material-icons"><label class="fa fa-eye"></label></span>
+					<span class="text">Posts</span>
+					<i :class="['fa', 'fa-chevron-down', { 'rotated': currentDropdown === 'posts' }]"></i>
+				</button>
+				<div v-if="currentDropdown === 'posts'" class="dropdown-menu">
+					<router-link to="/post"><label class="fa fa-angle-double-right"> first example</label></router-link>
+					<router-link to="/post2"><label class="fa fa-angle-double-right"> second example</label></router-link>
+				</div>
+			</div>
+
 			<!-- Dropdown for API Calls -->
 
 		</div>

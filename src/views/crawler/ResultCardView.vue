@@ -171,7 +171,7 @@ const search = async() => {
 .row{
   margin-top: 10px;
 }
- .btn, .counter{
+ .counter{
   font-size: 15px !important;
  } 
  .form-group{

@@ -45,7 +45,7 @@ export default{
  .home{
   text-align: center;
  }
- .btn, .counter{
+ .counter{
   font-size: 40px;
   margin: 10px;
  }

@@ -36,7 +36,7 @@ export default{
  .examples{
   text-align: center;
  }
- .btn, .counter{
+ .counter{
   font-size: 40px;
   margin: 10px;
  }
