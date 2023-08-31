@@ -34,9 +34,8 @@
                 </div>
                 <div class="card-body pt-0">
                     <ul>
-                      <li><router-link to="/postDetail/:id1"><label class="fa fa-angle-double-right"> Post 1</label></router-link></li>
-                      <li><router-link to="/postDetail/:id2"><label class="fa fa-angle-double-right"> Post 2</label></router-link></li>
-                      <li><router-link to="/postDetail/:id3"><label class="fa fa-angle-double-right"> Post 3</label></router-link></li>
+                      <li v-for="post in posts"
+                         :key="post.id"><router-link :to="`/postDetail/${post.id}`"><label class="fa fa-angle-double-right"> {{post.title}}</label></router-link></li>
                     </ul>    
                 </div>
             </div>
@@ -48,7 +47,20 @@
 </template>
 
 <script setup>
-   import { vAutofocus } from '@/directives/vAutofocus';
+    import {ref} from 'vue'
+    import { vAutofocus } from '@/directives/vAutofocus';
+
+    const posts = ref([
+        {   id: 'id1',
+            title: 'Post 1'
+        },
+        {   id: 'id2',
+            title: 'Post 2'
+        },
+        {   id: 'id3',
+            title: 'Post 3'
+        }
+    ])
 
 </script>
 
